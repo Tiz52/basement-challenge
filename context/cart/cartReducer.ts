@@ -6,7 +6,8 @@ type CartActionType =
   | {type: "[Cart] - Update products in cart"; payload: ICartProduct[]}
   | {type: "[Cart] - Update product quantity"; payload: ICartProduct[]}
   | {type: "[Cart] - Remove product from cart"; payload: ICartProduct[]}
-  | {type: "[Cart] - Update cart quantity"; payload: number};
+  | {type: "[Cart] - Update cart quantity"; payload: number}
+  | {type: "[Cart] - LoadCart from localstorage"; payload: ICartProduct[]};
 
 export const cartReducer = (state: CartState, action: CartActionType): CartState => {
   switch (action.type) {
@@ -29,6 +30,12 @@ export const cartReducer = (state: CartState, action: CartActionType): CartState
       return {
         ...state,
         numberOfItems: action.payload,
+      };
+
+    case "[Cart] - LoadCart from localstorage":
+      return {
+        ...state,
+        cart: [...action.payload],
       };
 
     default:

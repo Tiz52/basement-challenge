@@ -20,10 +20,26 @@ export const CartProvider: FC = ({children}) => {
   const [state, dispatch] = useReducer(cartReducer, Cart_INITIAL_STATE);
 
   useEffect(() => {
+    try {
+      const localStorageProducts = localStorage.getItem("cart")
+        ? JSON.parse(localStorage.getItem("cart")!)
+        : [];
+
+      dispatch({type: "[Cart] - LoadCart from localstorage", payload: localStorageProducts});
+    } catch (error) {
+      dispatch({type: "[Cart] - LoadCart from localstorage", payload: []});
+    }
+  }, []);
+
+  useEffect(() => {
     const numberOfItems = state.cart.reduce((prev, current) => current.quantity + prev, 0);
 
     dispatch({type: "[Cart] - Update cart quantity", payload: numberOfItems});
   }, [state.cart]);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(state.cart));
+  }, [state]);
 
   const addProductToCart = (product: ICartProduct): void => {
     let cart: ICartProduct[] = [];
