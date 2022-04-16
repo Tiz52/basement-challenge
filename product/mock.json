@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Black t-shirt",
+    "shortDesc": "Unisex black T-shirt",
+    "price": 7.95,
+    "imgUrl": "/products/shirt.png"
+  },
+  {
+    "id": 2,
+    "name": "Black hoodie",
+    "shortDesc": "Unisex black hoodie",
+    "price": 13,
+    "imgUrl": "/products/hoodie.png"
+  },
+  {
+    "id": 3,
+    "name": "Black cap",
+    "shortDesc": "Unisex black cap",
+    "price": 23,
+    "imgUrl": "/products/cap.png"
+  }
+]
